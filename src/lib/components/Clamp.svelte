@@ -101,7 +101,7 @@
 		<div class="result">
 			<div class="copy-container">
 				<label for="clamp" class="result-label">CSS Clamp Function</label>
-				<Copy str={clamp} />
+				<Copy str={clamp} context="clamp" />
 				<pre id="clamp" class="code-block">{clamp}</pre>
 			</div>
 		</div>

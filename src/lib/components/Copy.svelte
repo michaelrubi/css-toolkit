@@ -1,14 +1,14 @@
 <script lang="ts">
-	const { str }: { str: string } = $props();
-
-	let copySuccess = $state(false);
+	const { str, context }: { str: string; context: string } = $props();
+	import appState from '$lib/state.svelte';
 
 	async function copyToClipboard() {
+		appState.copiedContext = context;
 		try {
 			await navigator.clipboard.writeText(str);
-			copySuccess = true;
+			appState.copySuccess = true;
 			setTimeout(() => {
-				copySuccess = false;
+				appState.copySuccess = false;
 			}, 1500);
 		} catch (err) {
 			console.error('Failed to copy text: ', err);
@@ -33,7 +33,3 @@
 		/>
 	</svg>
 </button>
-
-{#if copySuccess}
-	<p class="copy-success card">Copied to clipboard!</p>
-{/if}
